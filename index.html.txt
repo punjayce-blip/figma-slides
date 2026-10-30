@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>演示文稿 - Figma Slides</title>
+  <style>
+    /* 全局重置与基础样式 */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #0f172a; /* 深色沉浸式背景 */
+      color: #f8fafc;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* 顶部导航条 */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-badge {
+      background: #3b82f6;
+      color: #fff;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .actions {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: #e2e8f0;
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+    }
+
+    /* 主演示区域 */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* 16:9 响应式容器 */
+    .slide-wrapper {
+      width: 100%;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      position: relative;
+      /* 保持 16:9 比例 */
+      aspect-ratio: 16 / 9;
+    }
+
+    .slide-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* 底部辅助提示 */
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.85rem;
+      color: #64748b;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    footer span {
+      color: #94a3b8;
+    }
+
+    /* 手机端适配 */
+    @media (max-width: 640px) {
+      header {
+        padding: 0.75rem 1rem;
+      }
+      main {
+        padding: 1rem 0.5rem;
+      }
+      .slide-wrapper {
+        border-radius: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 顶部栏 -->
+  <header>
+    <div class="brand">
+      <span>幻灯片演示</span>
+      <span class="brand-badge">Slides</span>
+    </div>
+    <div class="actions">
+      <button class="btn btn-secondary" onclick="toggleFullScreen()">
+        ⛶ 全屏播放
+      </button>
+      <a class="btn btn-secondary" href="https://www.figma.com/slides/oseqqIBzpHI4khlPOmFiZ8/Untitled?node-id=6-263" target="_blank" rel="noopener noreferrer">
+        在 Figma 中打开 ↗
+      </a>
+    </div>
+  </header>
+
+  <!-- 中间核心演示区 -->
+  <main>
+    <div class="slide-wrapper" id="slideContainer">
+      <iframe 
+        src="https://embed.figma.com/slides/oseqqIBzpHI4khlPOmFiZ8/Untitled?node-id=6-263&embed-host=share" 
+        allowfullscreen 
+        loading="lazy">
+      </iframe>
+    </div>
+  </main>
+
+  <!-- 底部说明 -->
+  <footer>
+    提示：支持使用键盘 <span>←</span> / <span>→</span> 方向键翻页，或使用右下角原生控件全屏。
+  </footer>
+
+  <!-- 交互脚本 -->
+  <script>
+    function toggleFullScreen() {
+      const elem = document.getElementById("slideContainer");
+      if (!document.fullscreenElement) {
+        elem.requestFullscreen().catch(err => {
+          alert(`全屏请求失败: ${err.message}`);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    }
+  </script>
+</body>
+</html>
